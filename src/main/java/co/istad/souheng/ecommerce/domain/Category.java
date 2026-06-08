@@ -24,7 +24,8 @@ public class Category {
     private Boolean isDeleted;
 
     @ManyToOne
-    //self reference //when we want to have a parent category and sub category // we can use self reference to achieve this
+    //self reference
+    //when we want to have a parent category and sub category // we can use self reference to achieve this
     private Category parentCategory;
 
     @OneToMany(mappedBy = "category")
