@@ -46,6 +46,8 @@ public class Product {
 
     @Column(nullable = false)
     private Boolean isDeleted;
+
     @ManyToOne
+
     private Category category;
 }

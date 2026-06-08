@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 //we want to create repo for entity Category and the primary key of category is Integer
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
-
+    Boolean existsByName(String name);
 }
