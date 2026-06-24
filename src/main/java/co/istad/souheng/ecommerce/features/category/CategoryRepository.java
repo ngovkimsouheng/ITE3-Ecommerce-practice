@@ -1,6 +1,5 @@
-package co.istad.souheng.ecommerce.repository;
+package co.istad.souheng.ecommerce.features.category;
 
-import co.istad.souheng.ecommerce.domain.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,5 +1,6 @@
-package co.istad.souheng.ecommerce.domain;
+package co.istad.souheng.ecommerce.features.category;
 
+import co.istad.souheng.ecommerce.features.products.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

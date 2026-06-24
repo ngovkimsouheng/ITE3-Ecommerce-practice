@@ -1,8 +1,7 @@
-package co.istad.souheng.ecommerce.mapper;
+package co.istad.souheng.ecommerce.features.category;
 
-import co.istad.souheng.ecommerce.domain.Category;
-import co.istad.souheng.ecommerce.dto.CategoryResponse;
-import co.istad.souheng.ecommerce.dto.CreateCategoryRequest;
+import co.istad.souheng.ecommerce.features.category.dto.CategoryResponse;
+import co.istad.souheng.ecommerce.features.category.dto.CreateCategoryRequest;
 import org.mapstruct.Mapper;
 
 @Mapper (componentModel = "spring")

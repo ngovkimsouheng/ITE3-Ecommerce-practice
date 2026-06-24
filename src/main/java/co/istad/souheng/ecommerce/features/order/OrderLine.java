@@ -1,5 +1,6 @@
-package co.istad.souheng.ecommerce.domain;
+package co.istad.souheng.ecommerce.features.order;
 
+import co.istad.souheng.ecommerce.features.products.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,6 @@ public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @ManyToOne
     private Order order;
 

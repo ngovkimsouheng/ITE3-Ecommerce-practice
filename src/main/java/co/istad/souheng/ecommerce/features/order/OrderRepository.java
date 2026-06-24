@@ -1,6 +1,5 @@
-package co.istad.souheng.ecommerce.repository;
+package co.istad.souheng.ecommerce.features.order;
 
-import co.istad.souheng.ecommerce.domain.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

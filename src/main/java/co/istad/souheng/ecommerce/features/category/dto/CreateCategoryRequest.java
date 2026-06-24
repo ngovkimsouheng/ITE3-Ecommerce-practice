@@ -1,4 +1,4 @@
-package co.istad.souheng.ecommerce.dto;
+package co.istad.souheng.ecommerce.features.category.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
@@ -7,7 +7,6 @@ import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 public record CreateCategoryRequest(
-
         @NotBlank (message = "Name is required")
         @Size (max = 50)
         String name,

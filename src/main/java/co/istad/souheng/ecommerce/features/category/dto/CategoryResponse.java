@@ -1,10 +1,9 @@
-package co.istad.souheng.ecommerce.dto;
+package co.istad.souheng.ecommerce.features.category.dto;
 
-import co.istad.souheng.ecommerce.domain.Category;
 import lombok.Builder;
 
 @Builder
-public record CategoryResponse(
+public record   CategoryResponse(
         Integer id,
         String name,
         String description,

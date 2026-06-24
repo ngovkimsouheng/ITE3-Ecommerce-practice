@@ -1,4 +1,4 @@
-package co.istad.souheng.ecommerce.domain;
+package co.istad.souheng.ecommerce.features.order;
 
 import jakarta.persistence.*;
 import lombok.Getter;

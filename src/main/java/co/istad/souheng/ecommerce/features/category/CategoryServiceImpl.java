@@ -1,10 +1,7 @@
-package co.istad.souheng.ecommerce.service;
+package co.istad.souheng.ecommerce.features.category;
 
-import co.istad.souheng.ecommerce.domain.Category;
-import co.istad.souheng.ecommerce.dto.CategoryResponse;
-import co.istad.souheng.ecommerce.dto.CreateCategoryRequest;
-import co.istad.souheng.ecommerce.mapper.CategoryMapper;
-import co.istad.souheng.ecommerce.repository.CategoryRepository;
+import co.istad.souheng.ecommerce.features.category.dto.CategoryResponse;
+import co.istad.souheng.ecommerce.features.category.dto.CreateCategoryRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -19,7 +16,8 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class ServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CategoryService {
+
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
 
@@ -39,21 +37,17 @@ public class ServiceImpl implements CategoryService {
 
         Category parentCategory = null;
 
-
         if (createCategoryRequest.parentCategoryId() != null) {
             parentCategory = categoryRepository.findById(createCategoryRequest.parentCategoryId())
                     .orElseThrow(() -> new ResponseStatusException(
                             HttpStatus.NOT_FOUND,
-                            "Parent Category has not been found"
-                    ));
+                            "Parent Category has not been found"));
         }
 
         Category category = categoryMapper
                 .mapCreateCategoryRequestToCategory(createCategoryRequest);
-
         category.setIsDeleted(false);
         category.setParentCategory(parentCategory);
-
         category = categoryRepository.save(category);
 
 
@@ -68,6 +62,7 @@ public class ServiceImpl implements CategoryService {
                                 "Category not found"
                         ));
     }
+
     @Override
     public Page<CategoryResponse> getAllCategories(int page, int size) {
 
@@ -84,6 +79,8 @@ public class ServiceImpl implements CategoryService {
 
         return categoryMapper.mapCategoryToCategoryResponse(category);
     }
+
+
     @Override
     public void softDeleteCategoryById(Integer id) {
         Category category = categoryRepository.findById(id)
@@ -113,14 +110,11 @@ public class ServiceImpl implements CategoryService {
 
     @Override
     public void hardDeleteCategoryById(Integer id) {
+        findCategory(id);//find category id
+        List<Category> subCategories = categoryRepository.findAllByParentCategoryId(id); // find all parent after find id
 
-        findCategory(id);
-
-        List<Category> subCategories =
-                categoryRepository.findAllByParentCategoryId(id);
-
-        categoryRepository.deleteAll(subCategories);
-        categoryRepository.deleteById(id);
+        categoryRepository.deleteAll(subCategories); //delete each sub category
+        categoryRepository.deleteById(id); //delete that category
     }
 
     @Override
@@ -153,30 +147,30 @@ public class ServiceImpl implements CategoryService {
                     "Category name already exists"
             );
         }
-
         category.setName(categoryRequest.name());
         category.setDescription(categoryRequest.description());
         category.setIcon(categoryRequest.icon());
-
         Category updatedCategory = categoryRepository.save(category);
-
         return categoryMapper.mapCategoryToCategoryResponse(updatedCategory);
     }
-
     @Override
     public Page<CategoryResponse> getSubCategoriesByMainId(
             Integer parentId,
             int page,
             int size
     ) {
-
         findCategory(parentId);
-
         Pageable pageable = PageRequest.of(page, size);
-
         return categoryRepository
                 .findAllByParentCategoryId(parentId, pageable)
                 .map(categoryMapper::mapCategoryToCategoryResponse);
     }
+
+
+
+    
+
+
+
 
 }

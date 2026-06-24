@@ -1,8 +1,7 @@
-package co.istad.souheng.ecommerce.controller;
+package co.istad.souheng.ecommerce.features.category;
 
-import co.istad.souheng.ecommerce.dto.CategoryResponse;
-import co.istad.souheng.ecommerce.dto.CreateCategoryRequest;
-import co.istad.souheng.ecommerce.service.CategoryService;
+import co.istad.souheng.ecommerce.features.category.dto.CategoryResponse;
+import co.istad.souheng.ecommerce.features.category.dto.CreateCategoryRequest;
 //import jakarta.validation.Valid;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +31,6 @@ public class CategoryContoller {
             @RequestParam(defaultValue = "25") int size) {
         return categoryService.getAllCategories(page, size);
     }
-
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
