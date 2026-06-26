@@ -51,7 +51,7 @@ public class OrderController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void softDeleteOrder(@PathVariable UUID id) {
+    public void softDeleteOrderById(@PathVariable UUID id) {
 
         orderService.softDeleteOrderById(id);
 
@@ -59,7 +59,7 @@ public class OrderController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}/soft-delete")
-    public void hardDeleteCategory(@PathVariable UUID id) {
+    public void hardDeleteOrderById(@PathVariable UUID id) {
 
         orderService.hardDeleteOrderById(id);
 
