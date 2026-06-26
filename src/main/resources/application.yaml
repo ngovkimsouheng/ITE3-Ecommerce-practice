@@ -2,7 +2,12 @@ file:
   client-path: /file
   storage-location: C:/Users/TUF/Desktop/ite-pic\
   base-uri: http://localhost:${server.port}${file.client-path}/
+
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
   jpa:
     hibernate:
       ddl-auto: update

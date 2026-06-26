@@ -16,6 +16,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "orders")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -27,13 +28,12 @@ public class Order {
     private Float discount;
     private String remark;
     @Column(nullable = false)
-    private  Boolean status;
+    private  Boolean status; //pending
     @Column(nullable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime orderedAt;
     @Column(nullable = false)
     private  Boolean isDeleted;
 
-
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order" ,cascade = CascadeType.PERSIST)
     private List<OrderLine> orderLines;
 }

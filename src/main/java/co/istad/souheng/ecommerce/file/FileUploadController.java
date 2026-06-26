@@ -2,6 +2,8 @@ package co.istad.souheng.ecommerce.file;
 
 import co.istad.souheng.ecommerce.file.dto.FileUploadResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,5 +35,18 @@ public class FileUploadController {
     @DeleteMapping("/{name}")
     public void deleteByName(@PathVariable String name) {
         fileUploadService.deleteByName(name);
+    }
+
+    @GetMapping
+    public Page<FileUploadResponse> findAll(
+            @RequestParam(required = false, defaultValue = "0") int pageNumber,
+            @RequestParam(required = false, defaultValue = "25") int pageSize
+    ) {
+        return fileUploadService.findAll(pageNumber, pageSize);
+    }
+
+    @GetMapping("/{name}")
+    public FileUploadResponse findByName(@PathVariable String name) {
+        return fileUploadService.findByName(name);
     }
 }

@@ -20,6 +20,8 @@ public class FileUpload {
     private String name;
     //meta data of that picture
     private String caption;
+    @Column(nullable = false, length = 15)
+    private String extension;
 
     @Column(nullable = false)
     private Long size; // default get mao chea KB
