@@ -23,8 +23,12 @@ public class OrderController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public OrderResponse createNew(@Valid @RequestBody CreateOrderRequest createOrderRequest) {
+    public OrderResponse createNew
+            (@Valid @RequestBody
+             CreateOrderRequest createOrderRequest) {
+
         return orderService.createOrder(createOrderRequest);
+
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -32,30 +36,40 @@ public class OrderController {
     public Page<OrderResponse> getAllOrders(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "25") int size) {
+
         return orderService.findAllOrders(page, size);
+
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public OrderResponse getOrderById(@PathVariable UUID id) {
+
         return orderService.findOrderById(id);
+
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     public void softDeleteOrder(@PathVariable UUID id) {
+
         orderService.softDeleteOrderById(id);
+
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}/soft-delete")
     public void hardDeleteCategory(@PathVariable UUID id) {
+
         orderService.hardDeleteOrderById(id);
+
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}/status")
-    public void setPaymentStatusById(@PathVariable UUID id,  SetPaymentRequest setPaymentRequest) {
+    public void setPaymentStatusById(@PathVariable UUID id, SetPaymentRequest setPaymentRequest) {
+
         orderService.setPaymentStatusById(id, setPaymentRequest);
+
     }
 }

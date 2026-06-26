@@ -22,5 +22,6 @@ public interface OrderService {
 
     void hardDeleteOrderById(UUID id);
 
-    void setPaymentStatusById(UUID orderId, SetPaymentRequest  setPaymentRequest);
+    void setPaymentStatusById(UUID orderId, SetPaymentRequest setPaymentRequest);
+
 }

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public record OrderLineDto(
-    @NotBlank(message = "code is required")
+        @NotBlank(message = "code is required")
         String code,
         @Positive
         @NotNull(message = "")

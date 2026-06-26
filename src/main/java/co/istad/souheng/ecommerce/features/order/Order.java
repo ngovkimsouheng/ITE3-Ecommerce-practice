@@ -23,17 +23,17 @@ public class Order {
     @Column(nullable = false)
     private String customerId;
     @Column(nullable = false)
-    private  String address;
+    private String address;
     @Column(nullable = false)
     private Float discount;
     private String remark;
     @Column(nullable = false)
-    private  Boolean status; //pending
+    private Boolean status; //pending
     @Column(nullable = false)
     private LocalDateTime orderedAt;
     @Column(nullable = false)
-    private  Boolean isDeleted;
+    private Boolean isDeleted;
 
-    @OneToMany(mappedBy = "order" ,cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderLine> orderLines;
 }
