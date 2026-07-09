@@ -4,6 +4,11 @@ file:
   base-uri: http://localhost:${server.port}${file.client-path}/
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9999/realms/ite-ecommerce
   servlet:
     multipart:
       max-file-size: 10MB
@@ -21,3 +26,10 @@ spring:
     name: ITE3-ecommerce
 server:
   port: 8080
+
+keycloak:
+  server-url: http://localhost:9999
+  realm: master
+  target-realm: ite-ecommerce
+  client-id: ite-ecommerce-spring-api
+  client-secret: eyftVgciJBa7ZmKRWcbBouE0k6Zx0Fhi

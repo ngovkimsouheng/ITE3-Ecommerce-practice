@@ -5,12 +5,15 @@ import co.istad.souheng.ecommerce.features.order.dto.OrderResponse;
 import co.istad.souheng.ecommerce.features.order.dto.SetPaymentRequest;
 import co.istad.souheng.ecommerce.features.products.Product;
 import co.istad.souheng.ecommerce.features.products.ProductRepository;
+import co.istad.souheng.ecommerce.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -56,7 +59,9 @@ public class OrderRequestImpl implements OrderService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid order code");
         }
 
-        order.setCustomerId("heng");
+
+
+        order.setCustomerId(SecurityUtils.extractUserId());
         order.setIsDeleted(false);
         order.setOrderedAt(LocalDateTime.now());
         order.setStatus(false);
